@@ -1,0 +1,100 @@
+    <!DOCTYPE html>  
+    <html>  
+      <head>  
+        <title>JavaScript Audio Write Example</title>
+        
+        <script type="text/javascript" src="ToneGenerator.js"></script>
+          
+      </head>  
+      <body>  
+        <button onclick="start()">play</button>  
+        <button onclick="stop()">stop</button>  
+      
+        <script type="text/javascript">    
+          var notes = [
+            {pitch:3,frequency:140},
+            {pitch:4,frequency:160},
+            {pitch:5,frequency:170},
+            {pitch:2,frequency:180},
+            {pitch:1,frequency:190},
+            {pitch:6,frequency:120},
+            {pitch:2,frequency:140},
+            {pitch:3,frequency:160},
+            {pitch:4,frequency:180},
+            {pitch:1.5,frequency:120},
+            {pitch:2.5,frequency:170},
+          ];
+        
+          var currentNote = 0;
+        
+          var loops = -1; // loop forever
+          
+          var currentLoop = 0;
+          
+          var bpm = 60;
+          
+          
+          
+          
+          
+          var tempo = 0;
+          
+          var noteTimeout;
+              
+        
+          function bpmToMilliseconds(bpm) {            
+            // beats per second
+            var beats = bpm / 60;
+            
+            // milliseconds per beat
+            return 1000 / beats;
+          
+          }
+        
+        
+        
+        
+            
+          function nextNote() {
+                        
+            frequency = notes[currentNote].frequency;
+            pitch = notes[currentNote].pitch;
+
+            console.log(frequency);
+            currentNote++;
+            if (currentNote >= notes.length) {
+              currentNote = 0;
+              currentLoop++;
+            }
+            
+            // still looping
+            if (currentLoop < loops || loops === -1) {
+              noteTimeout = setTimeout("nextNote()",tempo);
+            }
+            // stop
+            else {
+              frequency = 0;
+            }
+            
+          }   
+      
+      
+          function start() {  
+            currentSoundSample = 0;
+            tempo = bpmToMilliseconds(bpm); 
+            nextNote(); 
+          }  
+      
+          function stop() {  
+            pause();
+            currentNote = 0;
+            currentLoop = 0;
+          }  
+          
+          function pause() {
+            frequency = 0;
+            clearTimeout(noteTimeout);
+          }
+      </script>  
+      </body>  
+    </html>  
