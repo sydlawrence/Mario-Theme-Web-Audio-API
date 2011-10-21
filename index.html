@@ -18,9 +18,14 @@
       	<div id="main">
       
         <h1>Mario Theme using the Audio API</h1>
+        <p>
+          <button onclick="start()">play</button>  
+          <button onclick="stop()">stop</button> 
+        </p>
         <p>Currently this only works on Firefox, but I am working on it...</p>
-        <button onclick="start()">play</button>  
-        <button onclick="stop()">stop</button>  
+        <p>The whole tune is generated purely using javascript and the browser APIs.</p>
+        
+        <p>For more information on the Audio API visit the <a href="https://developer.mozilla.org/en/Introducing_the_Audio_API_Extension">Mozilla Developer Network</a></p> 
       
         <script type="text/javascript">    
     
@@ -40,7 +45,7 @@
 
             switch (type) {
               case "beep" :
-                frequency = notes[currentNote].frequency;
+                frequency = tune[currentNote].frequency;
                 break;          
               case "delay" :
                 frequency = 0;
@@ -48,7 +53,7 @@
             }
 
             currentNote++;
-            if (currentNote >= notes.length) {
+            if (currentNote >= tune.length) {
               currentNote = 0;
               currentLoop++;
             }
@@ -87,6 +92,8 @@
 	<footer>
 		<a href="http://sydlawrence.com">Handcrafted by Syd</a>
 	</footer>
+	
+	<a href="https://github.com/sydlawrence/Mario-Theme-Web-Audio-API"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:999" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
       
       <script type="text/javascript">
 
