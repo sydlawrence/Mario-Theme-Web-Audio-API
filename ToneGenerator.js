@@ -1,4 +1,4 @@
-var pitch = 4;
+var pitch = 2;
 
 function AudioDataDestination(sampleRate, readFn) {  
   // Initialize the audio output.  

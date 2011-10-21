@@ -1,66 +1,52 @@
     <!DOCTYPE html>  
     <html>  
       <head>  
-        <title>JavaScript Audio Write Example</title>
+        <title>Mario Theme Tune with JavaScript</title>
         
         <script type="text/javascript" src="ToneGenerator.js"></script>
+        <script type="text/javascript" src="tune.js"></script>
+          
+        <link rel="stylesheet" href="../css/style.css?v=32">
+	       <link rel="stylesheet" href="../css/screen.css?v=32">  
           
       </head>  
       <body>  
+      
+        <header>
+      		<h1>My Playground <a href="http://twitter.sydlawrence.com">@sydlawrence</a></h1>
+      	</header>
+      	<div id="main">
+      
+        <h1>Mario Theme using the Audio API</h1>
+        <p>Currently this only works on Firefox, but I am working on it...</p>
         <button onclick="start()">play</button>  
         <button onclick="stop()">stop</button>  
       
         <script type="text/javascript">    
-          var notes = [
-            {pitch:3,frequency:140},
-            {pitch:4,frequency:160},
-            {pitch:5,frequency:170},
-            {pitch:2,frequency:180},
-            {pitch:1,frequency:190},
-            {pitch:6,frequency:120},
-            {pitch:2,frequency:140},
-            {pitch:3,frequency:160},
-            {pitch:4,frequency:180},
-            {pitch:1.5,frequency:120},
-            {pitch:2.5,frequency:170},
-          ];
-        
+    
           var currentNote = 0;
         
-          var loops = -1; // loop forever
+          var loops = 1; // does not loop (-1 = forever)
           
           var currentLoop = 0;
-          
-          var bpm = 60;
-          
-          
-          
-          
-          
-          var tempo = 0;
+             
           
           var noteTimeout;
-              
-        
-          function bpmToMilliseconds(bpm) {            
-            // beats per second
-            var beats = bpm / 60;
-            
-            // milliseconds per beat
-            return 1000 / beats;
-          
-          }
-        
-        
-        
-        
-            
+               
           function nextNote() {
                         
-            frequency = notes[currentNote].frequency;
-            pitch = notes[currentNote].pitch;
+            duration = notes[currentNote].duration;
+            type = notes[currentNote].type;
 
-            console.log(frequency);
+            switch (type) {
+              case "beep" :
+                frequency = notes[currentNote].frequency;
+                break;          
+              case "delay" :
+                frequency = 0;
+                break;
+            }
+
             currentNote++;
             if (currentNote >= notes.length) {
               currentNote = 0;
@@ -69,7 +55,7 @@
             
             // still looping
             if (currentLoop < loops || loops === -1) {
-              noteTimeout = setTimeout("nextNote()",tempo);
+              noteTimeout = setTimeout("nextNote()",duration);
             }
             // stop
             else {
@@ -81,7 +67,6 @@
       
           function start() {  
             currentSoundSample = 0;
-            tempo = bpmToMilliseconds(bpm); 
             nextNote(); 
           }  
       
@@ -95,6 +80,27 @@
             frequency = 0;
             clearTimeout(noteTimeout);
           }
-      </script>  
+      </script> 
+      
+      </div>
+
+	<footer>
+		<a href="http://sydlawrence.com">Handcrafted by Syd</a>
+	</footer>
+      
+      <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7654450-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+       
       </body>  
     </html>  
