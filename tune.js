@@ -1,7 +1,7 @@
 // with a little help from Ian Harker: http://wiki.mikrotik.com/wiki/Super_Mario_Theme
 
 
-var notes = [
+var tune = [
   {type:"beep",frequency:660,duration:100},
   {type:"delay",duration:150},
   {type:"beep",frequency:660,duration:100},
